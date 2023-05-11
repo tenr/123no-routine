@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./EventDetails.css";
-import flyer from "../../assets/fliers/IMG_6502.JPG";
+import flyer from "../../assets/fliers/IMG_6502.jpg";
 
 function EventDetails() {
   return (

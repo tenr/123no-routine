@@ -1,5 +1,5 @@
 import React from "react";
-import flyer from "../../assets/fliers/IMG_6502.JPG";
+import flyer from "../../assets/fliers/IMG_6502.jpg";
 
 function EventCard() {
   return (
@@ -13,7 +13,7 @@ function EventCard() {
             Tennis!
             <div className="badge badge-accent">NEW</div>
           </h2>
-          <p>If a dog chews shoes whose shoes does he choose?</p>
+          <p>If a dog chews shoes..</p>
           <div className="card-actions justify-end">
             <div className="badge badge-outline">NYC</div>
             <div className="badge badge-outline">🎾</div>
