@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#wrapper {
+  gap: 3rem;
+}
+
+#button {
+  width: 24rem;
+  margin-top: 2rem;
+  align-self: center;
+}
