@@ -1,0 +1,13 @@
+.wrapper {
+  height: 50vh;
+  width: 80vw;
+  justify-content: center;
+}
+
+p {
+  width: 50vw;
+}
+
+.red-gif {
+  /* height: 10rem; */
+}

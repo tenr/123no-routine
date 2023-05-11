@@ -6,6 +6,7 @@ import EventCard from "./components/EventCard/EventCard";
 import EventDetails from "./pages/EventDetails/EventDetails";
 import Main from "./pages/Main/Main";
 import AllEvents from "./components/AllEvents/AllEvents";
+import About from "./pages/About/About";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/" element={<Main />} />
         <Route path="/event-details" element={<EventDetails />} />
         <Route path="/events/all" element={<AllEvents />} />
+        <Route path="/about" element={<About />} />
       </Routes>
     </>
   );
