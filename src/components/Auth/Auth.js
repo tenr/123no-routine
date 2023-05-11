@@ -78,10 +78,10 @@ export const Auth = () => {
             </label>
           </div>
           <div className=" buttons-container">
-            <button onClick={signIn} className="btn btn-secondary my-1">
+            <button onClick={signIn} className="btn btn-secondary my-1 log-in">
               Login
             </button>
-            <button className="btn btn-primary my-1">Sign Up</button>
+            <button className="btn btn-primary my-1 sign-up">Sign Up</button>
             <div
               onClick={signInWithGoogle}
               className="btn btn-outline google-sign my-1"

@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+.sign-up {
+  width: 12rem;
+}
+
+.log-in {
+  width: 6rem;
+}
 /* .buttons-container {
   display: flex;
   flex-direction: column;
