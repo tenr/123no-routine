@@ -12,7 +12,6 @@ function App() {
   return (
     <>
       <Nav />
-      {/* <Events /> */}
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/event-details" element={<EventDetails />} />

@@ -9,8 +9,6 @@ function Main() {
       <Hero />
       <div className="stack-cards px-5">
         <EventCard />
-        <EventCard />
-        <EventCard />
       </div>
     </>
   );
