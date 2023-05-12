@@ -16,7 +16,7 @@ export const Auth = () => {
   const navigate = useNavigate();
   // const [loggedIn, setLoggedIn] = useState(false);
 
-  const handleSignIn = async () => {
+  const handleSignUp = async () => {
     try {
       const { user } = await createUserWithEmailAndPassword(
         auth,
@@ -30,7 +30,7 @@ export const Auth = () => {
         user_id: user.uid,
       });
 
-      navigate("/events");
+      navigate("/profile");
       // setLoggedIn(true);
 
       // setTimeout(() => {
@@ -51,6 +51,8 @@ export const Auth = () => {
         password: password,
         user_id: user.uid,
       });
+
+      navigate("/profile");
     } catch (error) {
       console.error(error.message);
     }
@@ -102,10 +104,11 @@ export const Auth = () => {
             </label>
           </div>
           <div className=" buttons-container">
-            <button onClick={handleSignIn} className="btn btn-secondary my-1">
-              Login
+            {/* add onClick */}
+            <button className="btn btn-secondary my-1">Login</button>
+            <button onClick={handleSignUp} className="btn btn-primary my-1">
+              Sign Up
             </button>
-            <button className="btn btn-primary my-1">Sign Up</button>
             <div
               onClick={handleSignInWithGoogle}
               className="btn btn-outline google-sign my-1"

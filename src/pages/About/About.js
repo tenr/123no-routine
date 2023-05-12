@@ -7,14 +7,11 @@ import group from "../../assets/photos/groupshot.png";
 import redGif from "../../assets/gifs/red.gif";
 import fred from "../../assets/photos/fred.jpg";
 import amandarand from "../../assets/photos/amanda&rand.jpg";
-// import brunsonThrow from "../../assets/photos/brunson-throw.jpg";
 import brunson from "../../assets/photos/brunson.jpg";
-// import huff from "../../assets/photos/huff.jpg";
 import joeyx2 from "../../assets/photos/joeyx2.jpg";
 import jordan from "../../assets/photos/jordan.jpg";
-import landin from "../../assets/photos/landin.jpg";
+// import landin from "../../assets/photos/landin.jpg";
 import matty from "../../assets/photos/matty.jpg";
-import megaJoey from "../../assets/photos/mega-joey.jpg";
 import megaG from "../../assets/photos/mega-g.jpg";
 import styles from "../../assets/photos/styles.jpg";
 
