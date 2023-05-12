@@ -14,7 +14,7 @@ function EventCard() {
         const data = await getDocs(EventsCollectionRef);
         const eventsData = data.docs.map((doc) => doc.data());
         setEvents(eventsData);
-        console.log(eventsData);
+        // console.log(eventsData);
       } catch (error) {
         console.error("error");
       }

@@ -1,4 +1,4 @@
-import { auth, googleProvider } from "../../config/firebase";
+import { auth, googleProvider, db } from "../../config/firebase";
 import {
   createUserWithEmailAndPassword,
   signInWithPopup,
@@ -6,32 +6,56 @@ import {
 } from "firebase/auth";
 import { useState } from "react";
 import "./Auth.css";
-// import firebase from "firebase/app";
+import { setDoc, collection, doc } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
 
 export const Auth = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const userRef = collection(db, "users");
+  const navigate = useNavigate();
+  // const [loggedIn, setLoggedIn] = useState(false);
 
-  const signIn = async () => {
+  const handleSignIn = async () => {
     try {
-      // console.log(email, password);
-      await createUserWithEmailAndPassword(auth, email, password);
+      const { user } = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
+      await setDoc(doc(userRef, user.uid), {
+        email: user.email,
+        password: password,
+        user_id: user.uid,
+      });
+
+      navigate("/events");
+      // setLoggedIn(true);
+
+      // setTimeout(() => {
+      //   setLoggedIn(false);
+      // }, 3000);
     } catch (error) {
-      // Handle any errors that may occur
       console.error(error.message);
     }
   };
 
-  const signInWithGoogle = async () => {
+  const handleSignInWithGoogle = async () => {
     try {
-      // console.log(email, password);
-      await signInWithPopup(auth, googleProvider);
+      const result = await signInWithPopup(auth, googleProvider);
+
+      const user = result.user;
+      await setDoc(doc(userRef, user.uid), {
+        email: user.email,
+        password: password,
+        user_id: user.uid,
+      });
     } catch (error) {
-      // Handle any errors that may occur
       console.error(error.message);
     }
   };
-  const signOut = async () => {
+  const handleSignOut = async () => {
     try {
       // console.log(email, password);
       await signOut(auth);
@@ -78,17 +102,20 @@ export const Auth = () => {
             </label>
           </div>
           <div className=" buttons-container">
-            <button onClick={signIn} className="btn btn-secondary my-1">
+            <button onClick={handleSignIn} className="btn btn-secondary my-1">
               Login
             </button>
             <button className="btn btn-primary my-1">Sign Up</button>
             <div
-              onClick={signInWithGoogle}
+              onClick={handleSignInWithGoogle}
               className="btn btn-outline google-sign my-1"
             >
               Sign in with Google
             </div>
-            <div onClick={signOut} className="btn btn-outline google-sign my-1">
+            <div
+              onClick={handleSignOut}
+              className="btn btn-outline google-sign my-1"
+            >
               Log Out
             </div>
           </div>
