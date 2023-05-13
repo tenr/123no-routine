@@ -1,37 +1,77 @@
-import { auth, googleProvider } from "../../config/firebase";
+import { auth, googleProvider, db } from "../../config/firebase";
 import {
   createUserWithEmailAndPassword,
   signInWithPopup,
   signOut,
+  signInWithEmailAndPassword,
 } from "firebase/auth";
 import { useState } from "react";
 import "./Auth.css";
-// import firebase from "firebase/app";
+import { setDoc, collection, doc } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
 
 export const Auth = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
-  const signIn = async () => {
+  const userRef = collection(db, "users");
+  const navigate = useNavigate();
+  // const [loggedIn, setLoggedIn] = useState(false);
+
+  const handleSignUp = async () => {
     try {
-      // console.log(email, password);
-      await createUserWithEmailAndPassword(auth, email, password);
+      const { user } = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
+      await setDoc(doc(userRef, user.uid), {
+        email: user.email,
+        user_id: user.uid,
+      });
+      //should i use the id of the protected route  here?
+      navigate("/profile");
     } catch (error) {
-      // Handle any errors that may occur
-      console.error(error.message);
+      // console.error(error.message);
+      setError(`Whoops! Looks like either your email is incorrect or your
+      password is not atleast 6 characters long. Give it another
+      try.`);
+      setTimeout(() => {
+        setError("");
+      }, 7000);
     }
   };
 
-  const signInWithGoogle = async () => {
+  const handleLoginWithEmailAndPassword = async () => {
     try {
-      // console.log(email, password);
-      await signInWithPopup(auth, googleProvider);
+      await signInWithEmailAndPassword(auth, email, password);
+      navigate("/profile");
     } catch (error) {
-      // Handle any errors that may occur
+      setError("We dont know you yet. Sign-up so we can be friends!");
+      setTimeout(() => {
+        setError("");
+      }, 5000);
+    }
+  };
+
+  const handleSignInWithGoogle = async () => {
+    try {
+      const result = await signInWithPopup(auth, googleProvider);
+
+      const user = result.user;
+      await setDoc(doc(userRef, user.uid), {
+        email: user.email,
+        user_id: user.uid,
+      });
+      //should i use the id of the protected route  here?
+      navigate("/profile");
+    } catch (error) {
       console.error(error.message);
     }
   };
-  const signOut = async () => {
+  const handleSignOut = async () => {
     try {
       // console.log(email, password);
       await signOut(auth);
@@ -78,20 +118,54 @@ export const Auth = () => {
             </label>
           </div>
           <div className=" buttons-container">
-            <button onClick={signIn} className="btn btn-secondary my-1">
+            {/* add onClick */}
+            <button
+              onClick={handleLoginWithEmailAndPassword}
+              className="btn btn-secondary my-1"
+              type="button"
+            >
               Login
             </button>
-            <button className="btn btn-primary my-1">Sign Up</button>
+            <button
+              onClick={handleSignUp}
+              className="btn btn-primary my-1"
+              type="button"
+            >
+              Sign Up
+            </button>
             <div
-              onClick={signInWithGoogle}
+              onClick={handleSignInWithGoogle}
               className="btn btn-outline google-sign my-1"
             >
               Sign in with Google
             </div>
-            <div onClick={signOut} className="btn btn-outline google-sign my-1">
+            <div
+              onClick={handleSignOut}
+              className="btn btn-outline google-sign my-1"
+            >
               Log Out
             </div>
           </div>
+          {error && (
+            <div className="alert alert-error shadow-lg">
+              <div>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="stroke-current flex-shrink-0 h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+                <span>{error}</span>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>
