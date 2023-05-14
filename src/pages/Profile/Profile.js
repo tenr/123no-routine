@@ -1,13 +1,36 @@
 import React from "react";
-import "./Profile.css";
-import { Form } from "../../components/Form/Form";
-import { useContext } from "react";
-import { auth, googleProvider, db } from "../../config/firebase";
 import AuthContext from "../../components/contexts/AuthContext";
+import { useState, useEffect, useContext } from "react";
+import { updateDoc, collection, getDocs } from "firebase/firestore";
+import { auth, googleProvider, db } from "../../config/firebase";
+import { Form } from "../../components/Form/Form";
+import "./Profile.css";
 import Typewriter from "typewriter-effect";
 
 export const Profile = () => {
+  /* ------------------------------- useContext ------------------------------- */
   const user = useContext(AuthContext);
+  /* --------------------------- Database reference --------------------------- */
+  const userCollectionRef = collection(db, "users");
+  /* ---------------------- database data state variable ---------------------- */
+  const [fetchedUserData, setFetchedUserData] = useState([]);
+
+  /* ------------------- GET user data & setFetchedUserData ------------------- */
+  useEffect(() => {
+    const getUserList = async () => {
+      try {
+        const data = await getDocs(userCollectionRef);
+        const filteredData = data.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+        }));
+        setFetchedUserData(filteredData);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    getUserList();
+  }, []);
 
   return (
     <>
@@ -19,7 +42,7 @@ export const Profile = () => {
               <Typewriter
                 onInit={(typewriter) => {
                   typewriter
-                    .typeString(`${user.user_id}?`)
+                    .typeString(`${user.email}?`)
                     .pauseFor(1000)
                     .start();
                 }}

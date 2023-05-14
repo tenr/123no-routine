@@ -33,7 +33,7 @@ function About() {
               className="btn btn-wide my-8"
               onClick={() =>
                 window.open(
-                  "mailto:noroutinenyc.com",
+                  "mailto:noroutinenyc@gmail.com",
                   "emailWindow",
                   "width=500,height=600,top=100,left=100"
                 )
