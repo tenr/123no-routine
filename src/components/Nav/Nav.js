@@ -1,16 +1,21 @@
 import React from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 function Nav() {
   return (
     <>
       <div className="navbar bg-base-100">
         <div className="flex-1">
-          <a className="btn btn-ghost normal-case text-xl">No Routine</a>
+          <Link to="/">
+            <a className="btn btn-ghost normal-case text-xl">No Routine</a>
+          </Link>
         </div>
         <div className="flex-none">
           <ul className="menu menu-horizontal px-1">
             <li>
-              <a>Events</a>
+              <Link to="/events/all">
+                <a>Events</a>
+              </Link>
             </li>
             <li tabIndex={0}>
               <a>
@@ -25,7 +30,7 @@ function Nav() {
                   <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
                 </svg>
               </a>
-              <ul className="p-2 bg-base-100">
+              <ul className="p-2 bg-base-100 dropdown" id="drop-down">
                 <li>
                   <a>Log-in</a>
                 </li>
@@ -35,7 +40,9 @@ function Nav() {
               </ul>
             </li>
             <li>
-              <a>About</a>
+              <Link to="/about">
+                <a>About</a>
+              </Link>
             </li>
           </ul>
         </div>
