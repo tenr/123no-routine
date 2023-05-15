@@ -15,6 +15,9 @@ export const Profile = () => {
   /* ---------------------- database data state variable ---------------------- */
   const [fetchedUserData, setFetchedUserData] = useState([]);
 
+  /* ------------------------------ Message state ----------------------------- */
+  const [message, setMessage] = useState("");
+
   /* ------------------- GET user data & setFetchedUserData ------------------- */
   useEffect(() => {
     const getUserList = async () => {
@@ -32,19 +35,32 @@ export const Profile = () => {
     getUserList();
   }, []);
 
+  const currentUser = fetchedUserData.find(
+    (loggedInUser) => loggedInUser.user_id === user.uid
+  );
+
+  function typeMessage(currentUser) {
+    if (currentUser) {
+      const message =
+        currentUser.nickname || currentUser.name || currentUser.email;
+      return message;
+    }
+  }
+
+  useEffect(() => {
+    setMessage(typeMessage(currentUser));
+  }, [currentUser]);
+
   return (
     <>
-      {user ? (
+      {message ? (
         <div className="profile-intro">
           <div className="typwriter-wrapper">
             <h1 className="profile-intro__heading">
               Whats good,
               <Typewriter
                 onInit={(typewriter) => {
-                  typewriter
-                    .typeString(`${user.email}?`)
-                    .pauseFor(1000)
-                    .start();
+                  typewriter.typeString(`${message}?`).start();
                 }}
               />
             </h1>
@@ -53,8 +69,8 @@ export const Profile = () => {
           <br></br>
           <ul className="profile-ul">
             <li className="profile-li">
-              Sometimes we get free gear from some of your favorite brands. So,
-              maybe its a good idea, to update this form. Just saying...
+              We get free gear from some of your favorite brands. So, maybe its
+              a good idea to update this form. Just saying...
             </li>
             <li className="profile-li">
               Click the "Update Profile" button if you ever want to update your
@@ -65,7 +81,7 @@ export const Profile = () => {
         </div>
       ) : (
         <div className="profile-intro">
-          <h1 className="profile-intro__heading">Whats good, ?</h1>
+          <h1 className="profile-intro__heading">Whats good</h1>
           <br></br>
           <ul className="profile-ul">
             <li className="profile-li">

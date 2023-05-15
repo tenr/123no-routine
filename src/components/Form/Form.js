@@ -14,6 +14,8 @@ export const Form = () => {
     bottom_size: "",
     shoe_size: "",
   });
+  const [success, setSuccess] = useState("");
+  const [error, setError] = useState("");
 
   /* -------------------- Database variables and use states ------------------- */
   const user = useContext(AuthContext);
@@ -36,14 +38,6 @@ export const Form = () => {
     };
     getUserList();
   }, []);
-
-  /* ------------ useEffect console logging User Data -------------- */
-  useEffect(() => {
-    {
-      fetchedUserData.length > 0 && console.log(fetchedUserData);
-    }
-  }, [fetchedUserData]);
-
   /* ---------------- Handle Form Submit ---------------------- */
   const handleUpdateProfile = async (e, id) => {
     e.preventDefault();
@@ -51,8 +45,17 @@ export const Form = () => {
     try {
       const userDoc = doc(db, "users", id);
       await updateDoc(userDoc, formValues);
+      setSuccess(`Profile Updated`);
+      setTimeout(() => {
+        setSuccess("");
+      }, 3000);
     } catch (error) {
-      console.error(error);
+      //console.error(error);
+      setError(`Try Again`);
+      setTimeout(() => {
+        setError("");
+      }, 7000);
+      setSuccess("");
     }
   };
 
@@ -61,10 +64,51 @@ export const Form = () => {
       ...formValues,
       [e.target.name]: e.target.value,
     });
+    //keep the values displayed
   };
 
   return (
     <>
+      {success && (
+        <div className="alert alert-success">
+          <div>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="stroke-current flex-shrink-0 h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+            <span>{success}</span>
+          </div>
+        </div>
+      )}
+      {error && (
+        <div className="alert alert-error ">
+          <div>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="stroke-current flex-shrink-0 h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+            <span>{error}</span>
+          </div>
+        </div>
+      )}
       <form
         className="proile-form mb-8"
         onSubmit={(e) => handleUpdateProfile(e, user.uid)}
@@ -75,6 +119,7 @@ export const Form = () => {
               <span className="label-text">What is your real name?</span>
             </label>
             <input
+              required
               name="name"
               value={formValues.name}
               onChange={handleChange}
@@ -207,10 +252,10 @@ export const Form = () => {
             <option>11.5 MEN</option>
             <option>12 MEN</option>
             <option>13 MEN</option>
+            <option>14 MEN</option>
+            <option>15 MEN</option>
           </select>
-          <button className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg">
-            Update Profile
-          </button>
+          <button className="btn   md:btn-md lg:btn-lg">Update Profile</button>
         </div>
       </form>
     </>

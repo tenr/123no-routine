@@ -30,6 +30,7 @@ export const Auth = () => {
       await setDoc(doc(userRef, user.uid), {
         email: user.email,
         user_id: user.uid,
+        isAdmin: false,
       });
       //should i use the id of the protected route  here?
       navigate("/profile");
