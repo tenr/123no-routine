@@ -7,7 +7,7 @@ function Main() {
   return (
     <>
       <Hero />
-      <div className="stack-cards px-5">
+      <div className="stack-cards px-5 gap-12">
         <EventCard />
       </div>
     </>

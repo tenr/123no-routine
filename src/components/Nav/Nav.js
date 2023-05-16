@@ -1,13 +1,27 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { auth } from "../../config/firebase";
+import { signOut } from "firebase/auth";
 
 function Nav() {
+  const navigate = useNavigate();
+
+  const handleSignOut = async () => {
+    try {
+      // console.log(email, password);
+      await signOut(auth);
+      navigate("/");
+    } catch (error) {
+      // Handle any errors that may occur
+      console.error(error.message);
+    }
+  };
   return (
     <>
       <div className="navbar bg-base-100">
         <div className="flex-1">
           <Link to="/">
-            <a className="btn btn-ghost normal-case text-xl">No Routine</a>
+            <h1 className="btn btn-ghost normal-case text-xl">No Routine</h1>
           </Link>
         </div>
         <div className="flex-none">
@@ -37,14 +51,19 @@ function Nav() {
                 </span>
               </Link>
               <ul className="p-2 bg-base-100 dropdown" id="drop-down">
-                <Link>
+                <Link to="/login-signup">
                   <li>
-                    <span>Log-in</span>
+                    <span>Log in</span>
                   </li>
                 </Link>
-                <Link>
+                <Link to="/login-signup">
                   <li>
-                    <span>Sign-up</span>
+                    <span>Sign up</span>
+                  </li>
+                </Link>
+                <Link to="/">
+                  <li onClick={handleSignOut}>
+                    <span>Sign Out</span>
                   </li>
                 </Link>
               </ul>
