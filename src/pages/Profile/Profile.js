@@ -1,22 +1,22 @@
 import React from "react";
 import AuthContext from "../../components/contexts/AuthContext";
 import { useState, useEffect, useContext } from "react";
-import { updateDoc, collection, getDocs } from "firebase/firestore";
-import { auth, googleProvider, db } from "../../config/firebase";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../../config/firebase";
 import { Form } from "../../components/Form/Form";
 import "./Profile.css";
 import Typewriter from "typewriter-effect";
 
 export const Profile = () => {
   /* ------------------------------- useContext ------------------------------- */
-  const user = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   /* --------------------------- Database reference --------------------------- */
   const userCollectionRef = collection(db, "users");
   /* ---------------------- database data state variable ---------------------- */
   const [fetchedUserData, setFetchedUserData] = useState([]);
 
   /* ------------------------------ Message state ----------------------------- */
-  const [message, setMessage] = useState("");
+  const [userNickname, setUserNickname] = useState("");
 
   /* ------------------- GET user data & setFetchedUserData ------------------- */
   useEffect(() => {
@@ -36,31 +36,31 @@ export const Profile = () => {
   }, []);
 
   const currentUser = fetchedUserData.find(
-    (loggedInUser) => loggedInUser.user_id === user.uid
+    (loggedInUser) => loggedInUser.user_id === user.user_id
   );
 
   function typeMessage(currentUser) {
     if (currentUser) {
-      const message =
+      const userNickname =
         currentUser.nickname || currentUser.name || currentUser.email;
-      return message;
+      return userNickname;
     }
   }
 
   useEffect(() => {
-    setMessage(typeMessage(currentUser));
+    setUserNickname(typeMessage(currentUser));
   }, [currentUser]);
 
   return (
     <>
-      {message ? (
+      {userNickname ? (
         <div className="profile-intro">
           <div className="typwriter-wrapper">
             <h1 className="profile-intro__heading">
               Whats good,
               <Typewriter
                 onInit={(typewriter) => {
-                  typewriter.typeString(`${message}?`).start();
+                  typewriter.typeString(`${userNickname}?`).start();
                 }}
               />
             </h1>
@@ -81,7 +81,7 @@ export const Profile = () => {
         </div>
       ) : (
         <div className="profile-intro">
-          <h1 className="profile-intro__heading">Whats good</h1>
+          <h1 className="profile-intro__heading">Whats good {user?.email}</h1>
           <br></br>
           <ul className="profile-ul">
             <li className="profile-li">

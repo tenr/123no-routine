@@ -18,7 +18,7 @@ export const Form = () => {
   const [error, setError] = useState("");
 
   /* -------------------- Database variables and use states ------------------- */
-  const user = useContext(AuthContext);
+  const { user, setUser } = useContext(AuthContext);
   const userCollectionRef = collection(db, "users");
   const [fetchedUserData, setFetchedUserData] = useState([]);
 
@@ -39,22 +39,24 @@ export const Form = () => {
     getUserList();
   }, []);
   /* ---------------- Handle Form Submit ---------------------- */
-  const handleUpdateProfile = async (e, id) => {
+  const handleUpdateProfile = async (e) => {
     e.preventDefault();
     //i do not want to prevent, beacuse i want the refresh to show the new name.
     try {
-      const userDoc = doc(db, "users", id);
+      const userDoc = doc(db, "users", user?.user_id);
       await updateDoc(userDoc, formValues);
+      setUser({ ...user, ...formValues });
       setSuccess(`Profile Updated`);
       setTimeout(() => {
         setSuccess("");
       }, 3000);
     } catch (error) {
-      //console.error(error);
+      console.log(error);
       setError(`Try Again`);
       setTimeout(() => {
         setError("");
       }, 7000);
+
       setSuccess("");
     }
   };
@@ -109,10 +111,7 @@ export const Form = () => {
           </div>
         </div>
       )}
-      <form
-        className="proile-form mb-8"
-        onSubmit={(e) => handleUpdateProfile(e, user.uid)}
-      >
+      <form className="proile-form mb-8" onSubmit={handleUpdateProfile}>
         <div className="form-control w-full max-w-xs place-content-center flex gap-4 ">
           <div>
             <label className="label">

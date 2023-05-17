@@ -8,7 +8,7 @@ import {
 } from "firebase/auth";
 import { useState } from "react";
 import "./Login.css";
-import { setDoc, collection, doc } from "firebase/firestore";
+import { setDoc, collection, doc, getDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
 
@@ -64,10 +64,17 @@ export const Login = () => {
       const result = await signInWithPopup(auth, googleProvider);
 
       const user = result.user;
+      // console.log(user.uid);
+      // const docSnap = await getDoc(userRef, user.uid);
+      // if (docSnap.exists()) {
+      //   console.log("Doc Exists");
+      // } else {
       await setDoc(doc(userRef, user.uid), {
         email: user.email,
         user_id: user.uid,
       });
+      // }
+
       //should i use the id of the protected route  here?
       navigate("/profile");
     } catch (error) {
