@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 function Hero() {
   return (
     <>
-      <div className="min-h-[80%] ">
+      <div className="min-h-[80%] py-8 ">
         <div className="hero  bg-base-200 background-image">
           <div className="hero-content flex-col ">
             <div className="text-center lg:text-center flex flex-col gap-12">
@@ -29,9 +29,9 @@ function Hero() {
           </div>
         </div>
       </div>
-      <div className="flex flex-col w-full">
+      {/* <div className="flex flex-col w-full">
         <div className="divider"></div>
-      </div>
+      </div> */}
     </>
   );
 }

@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import "./App.css";
 
 import Nav from "./components/Nav/Nav";
+import Footer from "./components/Footer/Footer";
 
 import EventDetails from "./pages/EventDetails/EventDetails";
 import Main from "./pages/Main/Main";
@@ -22,6 +23,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/login-signup" element={<Login />} />
       </Routes>
+      <Footer />
     </>
   );
 }
