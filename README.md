@@ -1,10 +1,14 @@
-# Getting Started with Create React App
+# Getting Started with NO ROUTINE
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+No Routine is a place for people to come and have fun. We put together events that include activities like Dodgeball, Kickball, Ultimate Frisbee and more. We created this space to allow people to have clean fun, outside of the bars and nightclubs. If you're coming to No Routine, you could expect fiendly competiton, a ton of smiles and feeling of nostalgia.
 
 ## Available Scripts
 
 In the project directory, you can run:
+
+### `npm install`
+
+Installs all dependecies this project used in development
 
 ### `npm start`
 
@@ -14,57 +18,30 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
-### `npm test`
+### Interacting with the Application
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+You should follow these steps to get the project running and working in the most efficient way.
 
-### `npm run build`
+1. Upon opening the project in a ide like VS Code, you should run 'npm install' in your terminal. This will install all needed dependecies for the project to run.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. 'npm start' will open the the project in your default browser.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+3. You should take a look around the HOME PAGE, and navigate to the SIGN-UP button.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+4. Sign in using either Username/Password or Google Sign-in.
 
-### `npm run eject`
+5. Upon sign-up, ou should be navigated to the PROFILE PAGE.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+6. Here is where we can learn more about the user, and tailor the interactions on the website more personally.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+7. Click UPDATE PROFILE, upo completion of the necessary fields. I would suggest filling out atleast the first two inputs (NAME & NICKNAME).
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+8. After making an account and updating your profile information, you may navigate to the either the EVENTS of HOME PAGE
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+9. Look for an event that has a badge that states OPEN in the event card. Click the OPEN event card.
 
-## Learn More
+10. Here you could retrieve more information on upcoming events and also RESERVE your spot.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+11. Click RESERVE. The list of participants should change onClick and add your NAME & NICKNAME.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+12. SEE YOU AT THE NEXT EVENT!
