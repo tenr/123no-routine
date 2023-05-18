@@ -1,4 +1,4 @@
-# Getting Started with NO ROUTINE
+# `Getting Started with NO ROUTINE`
 
 No Routine is a place for people to come and have fun. We put together events that include activities like Dodgeball, Kickball, Ultimate Frisbee and more. We created this space to allow people to have clean fun, outside of the bars and nightclubs. If you're coming to No Routine, you could expect fiendly competiton, a ton of smiles and feeling of nostalgia.
 
@@ -18,7 +18,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
-### Interacting with the Application
+### `Interacting with the Application`
 
 You should follow these steps to get the project running and working in the most efficient way.
 
