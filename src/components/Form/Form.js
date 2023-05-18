@@ -241,6 +241,7 @@ export const Form = () => {
             <option>8.5 WMNS</option>
             <option>9 WMNS</option>
             <option>9.5 WMNS</option>
+            <option>10+ WMNS</option>
             <option>8 MEN</option>
             <option>8.5 MEN</option>
             <option>9 MEN</option>
@@ -252,7 +253,7 @@ export const Form = () => {
             <option>12 MEN</option>
             <option>13 MEN</option>
             <option>14 MEN</option>
-            <option>15 MEN</option>
+            <option>15+ MEN</option>
           </select>
           <button className="btn   md:btn-md lg:btn-lg">Update Profile</button>
         </div>
