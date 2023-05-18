@@ -132,6 +132,7 @@ export const Form = () => {
               <span className="label-text">What is your nickname?</span>
             </label>
             <input
+              required
               name="nickname"
               value={formValues.nickname}
               onChange={handleChange}
