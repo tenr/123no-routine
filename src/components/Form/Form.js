@@ -1,7 +1,7 @@
 import AuthContext from "../../components/contexts/AuthContext";
 import { React, useState, useEffect, useContext } from "react";
 import { updateDoc, collection, getDocs, doc } from "firebase/firestore";
-import { auth, googleProvider, db } from "../../config/firebase";
+import { db } from "../../config/firebase";
 import "./Form.css";
 
 export const Form = () => {
@@ -24,20 +24,33 @@ export const Form = () => {
 
   /* ------------------- GET user data & setFetchedUserData ------------------- */
   useEffect(() => {
-    const getUserList = async () => {
+    const getUserData = async () => {
       try {
-        const data = await getDocs(userCollectionRef);
-        const filteredData = data.docs.map((doc) => ({
-          ...doc.data(),
-          id: doc.id,
-        }));
-        setFetchedUserData(filteredData);
+        const querySnapshot = await getDocs(userCollectionRef);
+        const userData = querySnapshot.docs.find(
+          (doc) => doc.id === user?.user_id
+        );
+
+        if (userData) {
+          const formData = userData.data();
+          setFormValues({
+            name: formData.name || "",
+            nickname: formData.nickname || "",
+            pronouns: formData.pronouns || "",
+            top_size: formData.top_size || "",
+            bottom_size: formData.bottom_size || "",
+            shoe_size: formData.shoe_size || "",
+          });
+        }
       } catch (error) {
         console.error(error);
       }
     };
-    getUserList();
-  }, []);
+
+    getUserData();
+  }, [user]);
+
+  console.log("user", user);
   /* ---------------- Handle Form Submit ---------------------- */
   const handleUpdateProfile = async (e) => {
     e.preventDefault();
@@ -209,7 +222,7 @@ export const Form = () => {
             defaultValue="Pick your Bottom size"
           >
             <option value="" disabled>
-              Pick your Top size
+              Pick your Bottom size
             </option>
             <option>Small</option>
             <option>Medium</option>

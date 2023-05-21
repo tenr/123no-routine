@@ -48,15 +48,16 @@ function EventDetails(props) {
     setLoading(!loading);
     if (!user) {
       navigate("/login-signup");
+      return;
     }
 
     try {
       await updateDoc(eventRef, {
         participants: arrayUnion({
-          id: user.user_id,
-          email: user.email,
-          name: user.name,
-          nickname: user.nickname,
+          id: user?.user_id,
+          email: user?.email,
+          name: user?.name,
+          nickname: user?.nickname,
         }),
       });
     } catch (error) {
@@ -96,9 +97,9 @@ function EventDetails(props) {
               className=" btn btn-lg btn-primary"
               id="button"
               onClick={handleReserve}
-              disabled={event?.participants?.find((u) => u.id == user.user_id)}
+              disabled={event?.participants?.find((u) => u.id == user?.user_id)}
             >
-              {event?.participants?.find((u) => u.id == user.user_id)
+              {event?.participants?.find((u) => u.id == user?.user_id)
                 ? "reserved"
                 : "reserve"}
             </button>
