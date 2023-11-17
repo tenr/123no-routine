@@ -1,11 +1,9 @@
-/* ------------------- help -------------------------- */
-
 import React, { useEffect, useState } from "react";
 import flyer from "../../assets/fliers/IMG_6502.jpg";
 import { db } from "../../config/firebase";
 import { getDocs, collection } from "firebase/firestore";
-import { Link } from "react-router-dom";
 import { getStorage, ref } from "firebase/storage";
+import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 
 function EventCard() {

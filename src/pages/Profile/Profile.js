@@ -1,43 +1,46 @@
 import React from "react";
 import AuthContext from "../../components/contexts/AuthContext";
 import { useState, useEffect, useContext } from "react";
-import { collection, getDocs } from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../config/firebase";
 import { Form } from "../../components/Form/Form";
 import "./Profile.css";
 import Typewriter from "typewriter-effect";
 
 export const Profile = () => {
-  /* ------------------------------- useContext ------------------------------- */
+  /* ------------------- useContext ----------------------- */
   const { user } = useContext(AuthContext);
-  /* --------------------------- Database reference --------------------------- */
-  const userCollectionRef = collection(db, "users");
-  /* ---------------------- database data state variable ---------------------- */
-  const [fetchedUserData, setFetchedUserData] = useState([]);
 
-  /* ------------------------------ Message state ----------------------------- */
+  /* ----------- database data state variable ---------------- */
+  const [fetchedUserData, setFetchedUserData] = useState({});
+
+  /* ----------------------- Message state ----------------------- */
   const [userNickname, setUserNickname] = useState("");
 
-  /* ------------------- GET user data & setFetchedUserData ------------------- */
+  /* ---------- GET user data & setFetchedUserData ------------ */
   useEffect(() => {
-    const getUserList = async () => {
-      try {
-        const data = await getDocs(userCollectionRef);
-        const filteredData = data.docs.map((doc) => ({
-          ...doc.data(),
-          id: doc.id,
-        }));
-        setFetchedUserData(filteredData);
-      } catch (error) {
-        console.error(error);
+    const fetchCurrentUser = async () => {
+      if (user && user.user_id) {
+        // Make sure user is defined and has an ID
+        const userDocRef = doc(db, "users", user.user_id);
+
+        try {
+          const docSnap = await getDoc(userDocRef);
+          if (docSnap.exists()) {
+            setFetchedUserData([docSnap.data()]); // Set the current user's data
+          } else {
+            console.log("No such document!");
+          }
+        } catch (error) {
+          console.error("Error fetching user data:", error);
+        }
       }
     };
-    getUserList();
-  }, []);
 
-  const currentUser = fetchedUserData.find(
-    (loggedInUser) => loggedInUser.user_id === user.user_id
-  );
+    fetchCurrentUser();
+  }, [user]);
+
+  const currentUser = fetchedUserData.data;
 
   function typeMessage(currentUser) {
     if (currentUser) {
@@ -63,6 +66,7 @@ export const Profile = () => {
                   typewriter.typeString(`${userNickname}?`).start();
                 }}
               />
+              ?
             </h1>
           </div>
 
@@ -81,7 +85,7 @@ export const Profile = () => {
         </div>
       ) : (
         <div className="profile-intro">
-          <h1 className="profile-intro__heading">Whats good {user?.email}</h1>
+          <h1 className="profile-intro__heading">Whats good {user?.email}?</h1>
           <br></br>
           <ul className="profile-ul">
             <li className="profile-li">

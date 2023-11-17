@@ -50,7 +50,7 @@ export const Form = () => {
     getUserData();
   }, [user]);
 
-  console.log("user", user);
+  // console.log("user", user);
   /* ---------------- Handle Form Submit ---------------------- */
   const handleUpdateProfile = async (e) => {
     e.preventDefault();
