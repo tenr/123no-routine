@@ -1,11 +1,12 @@
 import AuthContext from "../../components/contexts/AuthContext";
 import { React, useState, useEffect, useContext } from "react";
-import { updateDoc, collection, getDocs, doc } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
+import { updateDoc, getDoc, doc } from "firebase/firestore";
 import { db } from "../../config/firebase";
 import "./Form.css";
 
 export const Form = () => {
-  /* ----------------------------- Form use states ---------------------------- */
+  /* -------------- Form use states ----------------- */
   const [formValues, setFormValues] = useState({
     name: "",
     nickname: "",
@@ -16,61 +17,57 @@ export const Form = () => {
   });
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
-  /* -------------------- Database variables and use states ------------------- */
+  /* ---------- Database variables and use states ------------ */
   const { user, setUser } = useContext(AuthContext);
-  const userCollectionRef = collection(db, "users");
-  const [fetchedUserData, setFetchedUserData] = useState([]);
 
-  /* ------------------- GET user data & setFetchedUserData ------------------- */
+  /* --------- GET user data & setFetchedUserData ---------- */
   useEffect(() => {
     const getUserData = async () => {
-      try {
-        const querySnapshot = await getDocs(userCollectionRef);
-        const userData = querySnapshot.docs.find(
-          (doc) => doc.id === user?.user_id
-        );
+      if (user && user.user_id) {
+        const userDocRef = doc(db, "users", user.user_id);
 
-        if (userData) {
-          const formData = userData.data();
-          setFormValues({
-            name: formData.name || "",
-            nickname: formData.nickname || "",
-            pronouns: formData.pronouns || "",
-            top_size: formData.top_size || "",
-            bottom_size: formData.bottom_size || "",
-            shoe_size: formData.shoe_size || "",
-          });
+        try {
+          const docSnap = await getDoc(userDocRef);
+          if (docSnap.exists()) {
+            const formData = docSnap.data();
+            setFormValues({
+              name: formData.name || "",
+              nickname: formData.nickname || "",
+              pronouns: formData.pronouns || "",
+              top_size: formData.top_size || "",
+              bottom_size: formData.bottom_size || "",
+              shoe_size: formData.shoe_size || "",
+            });
+          }
+        } catch (error) {
+          console.error(error);
         }
-      } catch (error) {
-        console.error(error);
       }
     };
 
     getUserData();
   }, [user]);
 
-  // console.log("user", user);
   /* ---------------- Handle Form Submit ---------------------- */
   const handleUpdateProfile = async (e) => {
-    e.preventDefault();
-    //i do not want to prevent, beacuse i want the refresh to show the new name.
+    e.preventDefault(); // Prevent default form submission
+
     try {
       const userDoc = doc(db, "users", user?.user_id);
       await updateDoc(userDoc, formValues);
       setUser({ ...user, ...formValues });
       setSuccess(`Profile Updated`);
-      setTimeout(() => {
-        setSuccess("");
-      }, 3000);
-    } catch (error) {
-      console.log(error);
-      setError(`Try Again`);
-      setTimeout(() => {
-        setError("");
-      }, 7000);
 
-      setSuccess("");
+      // Set a timeout to refresh the page after showing the success message
+      setTimeout(() => {
+        window.location.reload(); // Refresh the current page
+      }, 3000); // Adjust the delay as needed
+    } catch (error) {
+      console.error(error);
+      setError(`Try Again`);
+      setTimeout(() => setError(""), 7000);
     }
   };
 

@@ -11,7 +11,7 @@ export const Profile = () => {
   /* ------------------- useContext ----------------------- */
   const { user } = useContext(AuthContext);
 
-  /* ----------- database data state variable ---------------- */
+  /* ----------- fetched useer state variable ---------------- */
   const [fetchedUserData, setFetchedUserData] = useState({});
 
   /* ----------------------- Message state ----------------------- */
@@ -27,7 +27,7 @@ export const Profile = () => {
         try {
           const docSnap = await getDoc(userDocRef);
           if (docSnap.exists()) {
-            setFetchedUserData([docSnap.data()]); // Set the current user's data
+            setFetchedUserData(docSnap.data()); // Set the current user's data
           } else {
             console.log("No such document!");
           }
@@ -40,7 +40,7 @@ export const Profile = () => {
     fetchCurrentUser();
   }, [user]);
 
-  const currentUser = fetchedUserData.data;
+  const currentUser = fetchedUserData;
 
   function typeMessage(currentUser) {
     if (currentUser) {
@@ -66,7 +66,6 @@ export const Profile = () => {
                   typewriter.typeString(`${userNickname}?`).start();
                 }}
               />
-              ?
             </h1>
           </div>
 
