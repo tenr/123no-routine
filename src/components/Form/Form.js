@@ -1,6 +1,5 @@
 import AuthContext from "../../components/contexts/AuthContext";
 import { React, useState, useEffect, useContext } from "react";
-import { useNavigate } from "react-router-dom";
 import { updateDoc, getDoc, doc } from "firebase/firestore";
 import { db } from "../../config/firebase";
 import "./Form.css";
@@ -17,7 +16,6 @@ export const Form = () => {
   });
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
-  const navigate = useNavigate();
 
   /* ---------- Database variables and use states ------------ */
   const { user, setUser } = useContext(AuthContext);

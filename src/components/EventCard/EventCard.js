@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import flyer from "../../assets/fliers/IMG_6502.jpg";
 import { db } from "../../config/firebase";
 import { getDocs, collection } from "firebase/firestore";
-import { getStorage, ref } from "firebase/storage";
+import { getStorage, ref, getDownloadURL } from "firebase/storage";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 
@@ -12,49 +12,50 @@ function EventCard() {
 
   const EventsCollectionRef = collection(db, "events");
 
-  //GET all events data and store into useState
-  useEffect(() => {
-    const getEvents = async () => {
-      try {
-        const data = await getDocs(EventsCollectionRef);
+  // Function to fetch event image URL
+  const fetchEventImage = async (imageName) => {
+    if (!imageName) return flyer; // Default image if no imageName provided
+    const imageRef = ref(getStorage(), `event_images/${imageName}`);
+    try {
+      return await getDownloadURL(imageRef);
+    } catch (error) {
+      console.error("Error fetching image: ", error);
+      return flyer; // Fallback to default image in case of an error
+    }
+  };
 
-        const eventsData = data.docs.map((doc) => {
-          const document = doc.data();
-          document.event_id = doc.id;
-          // console.log(document, doc.id);
-          return document;
-        });
-        if (location.pathname === "/") {
-          // eventsData.slice(0, 2);
-          eventsData.length = 3;
-        }
-        setEvents(eventsData);
-      } catch (error) {
-        console.error("error");
+  // Function to get all events data
+  const getEvents = async () => {
+    try {
+      const data = await getDocs(EventsCollectionRef);
+      let eventsData = data.docs.map((doc) => ({
+        ...doc.data(),
+        event_id: doc.id,
+      }));
+
+      // Fetch images for each event and update the eventsData
+
+      if (location.pathname === "/") {
+        eventsData = eventsData.slice(0, 3); // Limit events for homepage
       }
-    };
+
+      setEvents(eventsData);
+    } catch (error) {
+      console.error("Error fetching events: ", error);
+    }
+  };
+
+  useEffect(() => {
     getEvents();
   }, []);
-  console.log(events);
-
-  /* --------------------- Storage --------------------- */
-  // Get a reference to the storage service, which is used to create references in your storage bucket
-  const storage = getStorage();
-
-  // Create a storage reference from our storage service
-  const storageRef = ref(storage);
 
   return (
     <>
       {events.map((event) => (
-        <Link to={`/event-details/${event.event_id}`}>
-          <div
-            key={event.id}
-            className="card w-96 bg-base-100 shadow-xl mx-5 my-2"
-          >
+        <Link to={`/event-details/${event.event_id}`} key={event.event_id}>
+          <div className="card w-96 bg-base-100 shadow-xl mx-5 my-2">
             <figure>
-              {/* how do i get the firebase storage images looped in to the specific event? so image is not hard coded */}
-              <img src={event.image || flyer} alt="No Routine Flyer" />
+              <img src={event.image} alt="Event Flyer" />
             </figure>
             <div className="card-body">
               <h2 className="card-title">
