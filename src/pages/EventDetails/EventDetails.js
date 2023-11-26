@@ -69,7 +69,7 @@ function EventDetails(props) {
 
   return (
     <>
-      <div className="hero min-h-[40rem] bg-base-200 flex flex-col">
+      <div className="hero min-h-[640px] bg-base-200 flex flex-col">
         <div
           className=" mt-12 gap-12 hero-content flex-col lg:flex-row-reverse"
           id="wrapper"
@@ -97,11 +97,16 @@ function EventDetails(props) {
               className=" btn btn-lg btn-primary"
               id="button"
               onClick={handleReserve}
-              disabled={event?.participants?.find((u) => u.id == user?.user_id)}
+              disabled={
+                event?.status === "closed" ||
+                event?.participants?.find((u) => u.id === user?.user_id)
+              }
             >
-              {event?.participants?.find((u) => u.id == user?.user_id)
-                ? "reserved"
-                : "reserve"}
+              {event?.status === "closed"
+                ? "Event Closed"
+                : event?.participants?.find((u) => u.id === user?.user_id)
+                ? "Reserved"
+                : "Reserve"}
             </button>
           </div>
         </div>
