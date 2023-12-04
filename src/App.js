@@ -11,19 +11,26 @@ import About from "./pages/About/About";
 import { Profile } from "./pages/Profile/Profile";
 import { Login } from "./pages/Login/Login";
 
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+
+const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY);
+
 function App() {
   return (
     <>
-      <Nav />
-      <Routes>
-        <Route path="/" element={<Main />} />
-        <Route path="/event-details/:event_id" element={<EventDetails />} />
-        <Route path="/events" element={<AllEvents />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/login-signup" element={<Login />} />
-      </Routes>
-      <Footer />
+      <Elements stripe={stripePromise}>
+        <Nav />
+        <Routes>
+          <Route path="/" element={<Main />} />
+          <Route path="/event-details/:event_id" element={<EventDetails />} />
+          <Route path="/events" element={<AllEvents />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/login-signup" element={<Login />} />
+        </Routes>
+        <Footer />
+      </Elements>
     </>
   );
 }

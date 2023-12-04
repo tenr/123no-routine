@@ -10,8 +10,9 @@ import {
 } from "firebase/firestore";
 import "./EventDetails.css";
 import { db } from "../../config/firebase";
+import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import flyer from "../../assets/fliers/IMG_6502.jpg";
-//We want to make the image be populated by firebase storage.. so import that bihhh
+//We want to make the image be populated by firebase storage.. so import that
 
 function EventDetails(props) {
   const { event_id } = useParams();
@@ -65,7 +66,13 @@ function EventDetails(props) {
     }
   };
 
-  // console.log(participants);
+  //handle payment
+  const handlePayment = () => {
+    // Open the payment modal
+    openPaymentModal();
+
+    // You might need to integrate Stripe logic here or in the modal component
+  };
 
   return (
     <>
@@ -94,9 +101,9 @@ function EventDetails(props) {
               <li>★ good vibes</li>
             </ul>
             <button
-              className=" btn btn-lg btn-primary"
+              className="btn btn-lg btn-primary"
               id="button"
-              onClick={handleReserve}
+              onClick={() => (event?.paid ? handlePayment() : handleReserve())}
               disabled={
                 event?.status === "closed" ||
                 event?.participants?.find((u) => u.id === user?.user_id)
@@ -106,6 +113,8 @@ function EventDetails(props) {
                 ? "Event Closed"
                 : event?.participants?.find((u) => u.id === user?.user_id)
                 ? "Reserved"
+                : event?.paid
+                ? "Pay and Reserve"
                 : "Reserve"}
             </button>
           </div>
@@ -128,10 +137,10 @@ function EventDetails(props) {
                 </tr>
               </thead>
               <tbody>
-                {event?.participants?.map((participant, i) => {
+                {event?.participants?.map((participant, index) => {
                   return (
                     <tr>
-                      <th>{i + 1}</th>
+                      <th>{index + 1}</th>
                       <td>{participant?.name}</td>
                       <td>{participant?.nickname}</td>
                     </tr>
