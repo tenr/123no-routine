@@ -1,31 +1,23 @@
 import React, { useState, useEffect, useContext } from "react";
 import AuthContext from "../../components/contexts/AuthContext";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import {
-  collection,
-  getDoc,
-  doc,
-  updateDoc,
-  arrayUnion,
-} from "firebase/firestore";
+import { useNavigate, useParams } from "react-router-dom";
+import { getDoc, doc, updateDoc, arrayUnion } from "firebase/firestore";
 import "./EventDetails.css";
 import { db } from "../../config/firebase";
-import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import flyer from "../../assets/fliers/IMG_6502.jpg";
 //We want to make the image be populated by firebase storage.. so import that
 
 function EventDetails(props) {
   const { event_id } = useParams();
   const [event, setEvent] = useState(null);
-  const [activeUser, setActiveUser] = useState();
-  // const [participants, setParticipants] = useState([]);
   const [loading, setLoading] = useState(false);
+
   /* ------------------------------- useContext for Auth ------------------------------- */
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
   // console.log(user);
 
-  /* ---- Event ---- */
+  /* ---- Event Fetch ---- */
   const eventRef = doc(db, "events", event_id);
 
   //make a call to the database with the params.id to get the specific doc with that id to set to state
@@ -45,6 +37,7 @@ function EventDetails(props) {
     getEventDetails();
   }, [loading]);
 
+  //Redirect to login/signup if no user signed in
   const handleReserve = async () => {
     setLoading(!loading);
     if (!user) {
@@ -67,11 +60,12 @@ function EventDetails(props) {
   };
 
   //handle payment
-  const handlePayment = () => {
-    // Open the payment modal
-    openPaymentModal();
-
-    // You might need to integrate Stripe logic here or in the modal component
+  const handlePaymentRedirect = () => {
+    if (event && event.paymentLink) {
+      window.open(event.paymentLink, "_blank");
+    } else {
+      console.log("Payment Link not found.");
+    }
   };
 
   return (
@@ -103,7 +97,9 @@ function EventDetails(props) {
             <button
               className="btn btn-lg btn-primary"
               id="button"
-              onClick={() => (event?.paid ? handlePayment() : handleReserve())}
+              onClick={() =>
+                event?.paid ? handlePaymentRedirect() : handleReserve()
+              }
               disabled={
                 event?.status === "closed" ||
                 event?.participants?.find((u) => u.id === user?.user_id)
