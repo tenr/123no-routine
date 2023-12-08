@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import flyer from "../../assets/fliers/IMG_6502.jpg";
 import { db } from "../../config/firebase";
 import { getDocs, collection } from "firebase/firestore";
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
@@ -12,17 +11,17 @@ function EventCard() {
 
   const EventsCollectionRef = collection(db, "events");
 
-  // Function to fetch event image URL
-  const fetchEventImage = async (imageName) => {
-    if (!imageName) return flyer; // Default image if no imageName provided
-    const imageRef = ref(getStorage(), `event_images/${imageName}`);
-    try {
-      return await getDownloadURL(imageRef);
-    } catch (error) {
-      console.error("Error fetching image: ", error);
-      return flyer; // Fallback to default image in case of an error
-    }
-  };
+  // // Function to fetch event image URL
+  // const fetchEventImage = async (imageName) => {
+  //   if (!imageName) return flyer; // Default image if no imageName provided
+  //   const imageRef = ref(getStorage(), `event_images/${imageName}`);
+  //   try {
+  //     return await getDownloadURL(imageRef);
+  //   } catch (error) {
+  //     console.error("Error fetching image: ", error);
+  //     return flyer; // Fallback to default image in case of an error
+  //   }
+  // };
 
   // Function to get all events data
   const getEvents = async () => {

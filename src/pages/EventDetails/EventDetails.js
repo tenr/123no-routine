@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { getDoc, doc, updateDoc, arrayUnion } from "firebase/firestore";
 import "./EventDetails.css";
 import { db } from "../../config/firebase";
-import flyer from "../../assets/fliers/IMG_6502.jpg";
+
 //We want to make the image be populated by firebase storage.. so import that
 
 function EventDetails(props) {
@@ -76,7 +76,6 @@ function EventDetails(props) {
           id="wrapper"
         >
           <img src={event?.image} className="max-w-sm  shadow-xl " />
-          {/* event.image || flyer in src */}
           <div className="my-5">
             <h1 className="text-5xl font-bold">{event?.activity}</h1>
             <p className="py-6">
