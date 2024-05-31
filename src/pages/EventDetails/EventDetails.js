@@ -123,8 +123,8 @@ function EventDetails(props) {
               <thead>
                 <tr>
                   <th></th>
-                  <th>Name</th>
                   <th>Nickname</th>
+                  <th>Rank</th>
                   {/* <th>Pronouns</th>
                   <th>location</th>
                   <th>Last Login</th>
@@ -136,8 +136,8 @@ function EventDetails(props) {
                   return (
                     <tr>
                       <th>{index + 1}</th>
-                      <td>{participant?.name}</td>
                       <td>{participant?.nickname}</td>
+                      <td>0</td>
                     </tr>
                   );
                 })}
@@ -145,8 +145,7 @@ function EventDetails(props) {
               <tfoot>
                 <tr>
                   <th></th>
-                  <th>Name</th>
-                  <th>Nickname</th>
+
                   {/* <th>company</th>
                   <th>location</th>
                   <th>Last Login</th>
