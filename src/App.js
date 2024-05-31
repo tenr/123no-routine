@@ -13,6 +13,7 @@ import { Login } from "./pages/Login/Login";
 
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
+import ThemeToggle from "./components/ThemeToggle/ThemeToggle"; // Import ThemeToggle
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY);
 
@@ -30,6 +31,7 @@ function App() {
           <Route path="/login-signup" element={<Login />} />
         </Routes>
         <Footer />
+        <ThemeToggle /> {/* Add ThemeToggle */}
       </Elements>
     </>
   );
