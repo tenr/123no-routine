@@ -52,6 +52,7 @@ function EventDetails(props) {
           email: user?.email,
           name: user?.name,
           nickname: user?.nickname,
+          pronouns: user?.pronouns,
         }),
       });
     } catch (error) {
@@ -90,7 +91,7 @@ function EventDetails(props) {
               <br></br>
               <p className="font-bold">What to bring:</p>
               <li>★ water</li>
-              <li>★ runnin shoes</li>
+              <li>★ running shoes</li>
               <li>★ good vibes</li>
             </ul>
             <button
@@ -123,12 +124,8 @@ function EventDetails(props) {
               <thead>
                 <tr>
                   <th></th>
+                  <th>Name</th>
                   <th>Nickname</th>
-                  <th>Rank</th>
-                  {/* <th>Pronouns</th>
-                  <th>location</th>
-                  <th>Last Login</th>
-                  <th>Favorite Color</th> */}
                 </tr>
               </thead>
               <tbody>
@@ -136,8 +133,8 @@ function EventDetails(props) {
                   return (
                     <tr>
                       <th>{index + 1}</th>
+                      <td>{participant?.name}</td>
                       <td>{participant?.nickname}</td>
-                      <td>0</td>
                     </tr>
                   );
                 })}
