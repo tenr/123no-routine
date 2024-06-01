@@ -4,6 +4,7 @@ import { auth } from "../../config/firebase";
 import { signOut } from "firebase/auth";
 import AuthContext from "../contexts/AuthContext";
 import { FaUser } from "react-icons/fa";
+import ShareButton from "../ShareButton/ShareButton"; // Import the ShareButton component
 
 function Nav() {
   const { user } = useContext(AuthContext);
@@ -125,9 +126,9 @@ function Nav() {
       {isOpen && (
         <div
           ref={menuRef}
-          className="lg:hidden absolute right-0 top-12 bg-white shadow-lg rounded-md z-50 w-1/3"
+          className="lg:hidden absolute right-2 top-12 bg-white shadow-lg rounded-md z-50 w-2/3"
         >
-          <nav className="flex flex-col items-start space-y-2 mt-2 p-4 w-full">
+          <nav className="flex flex-col items-center text-center space-y-2 mt-2 p-4 w-full">
             <Link
               to="/events"
               className="text-base text-gray-700 hover:bg-red-500 hover:text-white px-4 py-2 rounded-md w-full"
@@ -147,12 +148,7 @@ function Nav() {
               Profile
             </Link>
             <div className="flex flex-col w-full gap-2">
-              <button
-                onClick={handleShare}
-                className="bg-green-500 text-white hover:bg-green-400 px-2 py-2 rounded-md w-full"
-              >
-                Share
-              </button>
+              <ShareButton /> {/* Include the new ShareButton component */}
               <button
                 onClick={handleSignOut}
                 className="bg-red-500 text-white hover:bg-red-700 px-4 py-2 rounded-md w-full"
