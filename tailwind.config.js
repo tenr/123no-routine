@@ -5,6 +5,6 @@ module.exports = {
   },
   plugins: [require("daisyui")],
   daisyui: {
-    themes: ["coffee", "cyberpunk"],
+    themes: ["business", "cyberpunk"],
   },
 };
