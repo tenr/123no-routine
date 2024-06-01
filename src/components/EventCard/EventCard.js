@@ -22,7 +22,7 @@ function EventCard() {
       }));
 
       if (location.pathname === "/") {
-        eventsData = eventsData.slice(0, 3); // Limit events for homepage
+        eventsData = eventsData.slice(0, 2); // Limit events for homepage
       }
 
       setEvents(eventsData);

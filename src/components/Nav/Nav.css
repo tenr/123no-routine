@@ -5,3 +5,15 @@
 #drop-down {
   z-index: 999 !important;
 }
+
+.container {
+  max-width: 100%;
+  overflow-x: hidden;
+  padding: 0 1rem; /* Add some padding to avoid content touching the edges */
+}
+
+html,
+body {
+  overflow-x: hidden;
+  width: 100%;
+}
