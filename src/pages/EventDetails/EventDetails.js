@@ -83,6 +83,8 @@ function EventDetails(props) {
               <p className="font-bold">What to bring:</p>
               <li>★ water</li>
               <li>★ running shoes</li>
+              <li>★ {event?.bring1}</li>
+              <li>★ {event?.bring2}</li>
               <li>★ good vibes</li>
             </ul>
             <button
