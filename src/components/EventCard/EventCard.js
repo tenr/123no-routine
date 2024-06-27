@@ -48,7 +48,7 @@ function EventCard() {
       ) : (
         events.map((event) => (
           <Link to={`/event-details/${event.event_id}`} key={event.event_id}>
-            <div className="card w-96 bg-base-100 shadow-xl mx-5 my-2">
+            <div className="card card-bordered w-96 bg-base-100 shadow-xl mx-5 my-2">
               <figure>
                 <img src={event.image} alt="Event Flyer" />
               </figure>
