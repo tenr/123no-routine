@@ -70,9 +70,7 @@ function EventDetails(props) {
           <img src={event?.image} className="max-w-sm shadow-xl" alt="Event" />
           <div className="my-5">
             <h1 className="text-4xl font-bold">{event?.activity}</h1>
-            <p className="py-6">
-              Come join us for another hard hitting Dodgeball game.
-            </p>
+            <p className="py-6">{event?.short_description}</p>
 
             <ul>
               <p className="font-bold">Event Details:</p>
