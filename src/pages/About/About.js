@@ -20,15 +20,21 @@ function About() {
     <>
       <div className="">
         <h1 className="text-4xl my-8 mx-5">About us</h1>
-        <div className="flex flex-row justify-center">
+        <div className="flex flex-column justify-center">
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam dolorem
-            cumque omnis consectetur assumenda accusantium cum nulla possimus
-            eum, voluptatum minima! Maiores inventore nobis perspiciatis beatae
-            nisi laborum rerum id. Ea, odio neque error obcaecati, recusandae
-            mollitia quaerat hic culpa iure impedit eaque magni commodi ipsa
-            autem ullam dolore modi aperiam quod nemo dicta provident
-            perspiciatis a sequi deleniti? Sit?
+            At No Routine, we believe that amidst the hustle and bustle of adult
+            life, it’s essential to carve out time for fun. We’re here to
+            provide a playground where you can break free from the monotony and
+            rediscover the joy of being active and social. Whether it’s
+            dodgeball, kickball, or any other exciting activity, our events are
+            designed to help you unleash your inner child, meet new friends, and
+            create unforgettable memories. Our website is your go-to hub for
+            everything No Routine. Explore upcoming events, sign up to join the
+            fun, meet our team, and share the excitement. Life’s too short to
+            stick to the same old routine—so let’s shake things up and make
+            every day a little more extraordinary with No Routine. Ready to
+            play? Check out our events, sign up, and dive into the adventure!
+            <br></br>
             <button
               className="btn btn-wide my-8"
               onClick={() =>
@@ -52,7 +58,7 @@ function About() {
           </div>
         </div>
 
-        <div className="carousel  wrapper">
+        <div className="sm: hidden carousel  wrapper">
           <div className="carousel-item item-1">
             <img src={fred} alt="fred" />
           </div>

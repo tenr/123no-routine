@@ -31,7 +31,6 @@ function App() {
           <Route path="/login-signup" element={<Login />} />
         </Routes>
         <Footer />
-        <ThemeToggle /> {/* Add ThemeToggle */}
       </Elements>
     </>
   );
