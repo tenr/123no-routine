@@ -26,14 +26,6 @@ function Nav() {
     setIsOpen(!isOpen);
   };
 
-  const handleShare = () => {
-    const subject = encodeURIComponent("Check out No Routine!");
-    const body = encodeURIComponent(
-      "Yo! You got to come to No Routine! www.noroutinenyc.com"
-    );
-    window.location.href = `mailto:?subject=${subject}&body=${body}`;
-  };
-
   const handleClickOutside = (event) => {
     if (menuRef.current && !menuRef.current.contains(event.target)) {
       setIsOpen(false);

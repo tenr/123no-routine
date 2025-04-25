@@ -21,7 +21,7 @@ function Hero() {
               <img className="lobo" src={lobo} alt="Lobo Run Cycle" />
 
               <Link to="/login-signup">
-                <button className="btn btn-lg  btn-primary w-3/6 self-center text-white">
+                <button className="btn btn-lg  btn-neutral w-3/6 self-center text-white">
                   SIGN UP
                 </button>
               </Link>

@@ -4,7 +4,6 @@ import { getStorage } from "firebase/storage";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
-import AuthContext from "../components/contexts/AuthContext";
 
 const firebaseConfig = {
   apiKey: "AIzaSyD4nVnKJvgWGf9s0lmbxN9gVt_vlk7VEV8",

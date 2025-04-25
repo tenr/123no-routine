@@ -8,7 +8,7 @@ import {
 } from "firebase/auth";
 import { useState } from "react";
 import "./Login.css";
-import { setDoc, collection, doc, getDoc } from "firebase/firestore";
+import { setDoc, collection, doc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
 

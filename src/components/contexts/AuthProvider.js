@@ -1,13 +1,7 @@
 import { useState, useEffect } from "react";
 import { auth, db } from "../../config/firebase";
 import AuthContext from "./AuthContext";
-import {
-  collection,
-  getDoc,
-  doc,
-  updateDoc,
-  arrayUnion,
-} from "firebase/firestore";
+import { getDoc, doc } from "firebase/firestore";
 
 function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
