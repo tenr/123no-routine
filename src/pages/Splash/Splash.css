@@ -1,7 +1,9 @@
 /* src/components/Splash.css */
 
 .splash-container {
-  background-color: #ffd800;
+  position: relative;
+  overflow: hidden;
+  /* background-color: #ffd800; */
   background-image: url("../../../public/images/splash-bg.jpg");
   filter: saturate(1.2);
   background-repeat: no-repeat;
@@ -9,6 +11,7 @@
   background-size: cover;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 500;
+
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -16,11 +19,47 @@
   justify-content: center;
   text-align: center;
   padding: 1rem;
+  gap: 1.5rem;
+}
+
+.bandage {
+  position: absolute;
+  pointer-events: none; /* clicks pass through */
+  z-index: 1;
+  /* responsive sizing: 10% of viewport width, but never more than 120px */
+  width: 10vw;
+  max-width: 120px;
+  height: auto;
+  opacity: 0.9;
+}
+
+/* individual placements */
+.bandage-3 {
+  top: 85%;
+  scale: 3.5;
+  left: 73%;
+  transform: rotate(46deg);
+}
+
+.bandage-2 {
+  top: 19%;
+  scale: 3.5;
+  right: 2%;
+  transform: rotate(65deg);
+}
+
+.bandage-4 {
+  bottom: 32%;
+  scale: 3.5;
+  left: 6%;
+  transform: rotate(-5deg);
 }
 
 .logo-wrapper {
-  width: 100%;
-  max-width: 500px;
+  max-width: 50rem;
+  min-width: 50rem;
+  /* width: 100%; */
+  /* max-width: 500px; */
   max-height: 150px;
   margin-bottom: 1rem;
 
@@ -33,15 +72,17 @@
 }
 
 .logo {
-  width: 100%;
-  height: auto;
+  /* width: 100%; */
+  height: 37.5rem;
+  width: 68rem;
   display: block;
   filter: invert(1);
 }
 
 .tagline {
+  min-width: 500px;
   max-width: 800px;
-  margin: 1rem auto;
+  margin: 2.8rem auto;
   font-size: 1.8rem;
 }
 
@@ -59,4 +100,7 @@
   border-radius: 4px;
   font-weight: bold;
   font-weight: bolder;
+  /* width: 100%; */
+  min-width: 400px;
+  max-width: 600px;
 }

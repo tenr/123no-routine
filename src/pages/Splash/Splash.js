@@ -5,6 +5,22 @@ import "./Splash.css";
 export default function Splash() {
   return (
     <div className="splash-container">
+      {/* bandages (positioned via CSS) */}
+      <img
+        src="/images/nr-bandage-4.png"
+        alt="x-bandage"
+        className="bandage bandage-4"
+      />
+      <img
+        src="/images/nr-bandage-2.png"
+        alt="long-bandage"
+        className="bandage bandage-2"
+      />
+      <img
+        src="/images/nr-bandage-3.png"
+        alt="wide-bandage"
+        className="bandage bandage-3"
+      />
       <div className="logo-wrapper">
         <img
           src="/images/noroutine-logo.png"
@@ -15,8 +31,10 @@ export default function Splash() {
 
       <p className="tagline">
         More play. More cities. More people remembering how good it feels to
-        move, connect, and break routine. We’re not just building events—we’re
-        building a movement. Join us.
+        move, connect, and have fun. We’re just getting started.
+        <br></br>
+        <br></br>
+        Join us this summer.
       </p>
 
       <p className="info">
