@@ -43,18 +43,21 @@
   top: 19%;
   right: 2%;
   transform: rotate(65deg);
+  scale: 3.5;
 }
 
 .bandage-3 {
   bottom: 15%;
   left: 73%;
   transform: rotate(46deg);
+  scale: 3.5;
 }
 
 .bandage-4 {
   bottom: 32%;
   left: 6%;
   transform: rotate(-5deg);
+  scale: 4.5;
 }
 
 /* logo container */
@@ -121,7 +124,7 @@
   .logo-wrapper {
     max-width: 80%;
     max-height: 120px;
-    margin-bottom: 1.5rem;
+    /* margin-bottom: 1.5rem; */
   }
 
   .tagline {
@@ -145,15 +148,18 @@
   .bandage-2 {
     top: 25%;
     right: 3%;
+    scale: 3.5;
   }
 
   .bandage-3 {
     bottom: 5%;
     left: 15%;
+    scale: 3.5;
   }
 
   .bandage-4 {
     top: 10%;
     right: 8%;
+    scale: 3.5;
   }
 }
