@@ -8,19 +8,19 @@ export default function Splash() {
     <div className="splash-container">
       {/* bandages */}
       <img
-        src="/images/nr-bandage-4.png"
-        alt=""
-        className="bandage bandage-4"
+        src="/images/nr-bandage-3.png"
+        alt="wide bottom right bandage"
+        className="bandage bandage-3"
       />
       <img
         src="/images/nr-bandage-2.png"
-        alt=""
+        alt="long top right bandage"
         className="bandage bandage-2"
       />
       <img
-        src="/images/nr-bandage-3.png"
-        alt=""
-        className="bandage bandage-3"
+        src="/images/nr-bandage-4.png"
+        alt="x bottom left bandage"
+        className="bandage bandage-4"
       />
 
       <div className="logo-wrapper">
@@ -32,35 +32,27 @@ export default function Splash() {
       </div>
 
       <p className="tagline">
-        More play. More cities. More people remembering how good it feels to
-        move, connect, and have fun. We’re just getting started.
+        More people. More cities. More fun.
         <br />
-        <br />
-        Join us this summer.
+        <br /> JOIN US THIS SUMMER
       </p>
 
-      <p className="info">
-        Follow us on{" "}
+      <div className="info">
         <a
-          className="link"
           href="https://www.instagram.com/noroutinenyc/?hl=en"
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={() => track("instagram_follow")}
+          className="cta"
+          onClick={() => track("ig_click")}
         >
-          Instagram
+          INSTAGRAM
         </a>
-        <br />
-        New site unveiling May 2025
-      </p>
-
-      <a
-        href="mailto:noroutinenyc@gmail.com"
-        className="cta"
-        onClick={() => track("contact_email_click")}
-      >
-        CONTACT US
-      </a>
+        <a
+          href="mailto:noroutinenyc@gmail.com"
+          className="cta"
+          onClick={() => track("contact_email_click")}
+        >
+          EMAIL
+        </a>
+      </div>
     </div>
   );
 }
