@@ -6,6 +6,7 @@
 
   /* main background */
   background-image: url("/public/images/splash-bg.jpg");
+  background-color: #ffce00;
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
