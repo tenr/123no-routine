@@ -124,7 +124,7 @@
   max-width: 600px;
 }
 
-@media (max-width: 600px) {
+@media (min-width: 600px) {
   /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
   .splash-container {
     /* everything else… */
@@ -133,7 +133,7 @@
     background-position: center;
   }
 }
-@media (max-width: 801px) {
+@media (min-width: 801px) {
   /* tablet, landscape iPad, lo-res laptops ands desktops */
   .splash-container {
     /* everything else… */
@@ -148,7 +148,7 @@
 /* ========== MOBILE ========= */
 /* ========== MOBILE ========= */
 /* ========== MOBILE ========= */
-@media (max-width: 640px) {
+@media (max-width: 430px) {
   .splash-container {
     padding: 0.5rem;
     gap: 1rem;
