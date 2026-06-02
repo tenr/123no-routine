@@ -53,8 +53,6 @@ function AboutPage() {
       <SiteHeader />
 
       <section className="about-content">
-        <h1>about</h1>
-
         <p>
           NO ROUTINE is a New York based global community
           <br />
