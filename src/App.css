@@ -2,20 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* @font-face {
-  font-family: "Transport";
-  src: url("./assets/fonts/Transport.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Transport Heavy";
-  src: url("./assets/fonts/Transport-Heavy.woff2") format("woff2");
-  font-weight: 800;
-  font-style: normal;
-} */
-
+/* GLOBAL RESET */
 * {
   box-sizing: border-box;
 }
@@ -23,15 +10,16 @@
 html,
 body,
 #root {
-  min-height: 100%;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  background: #f9f9f9;
+  overflow: hidden;
 }
 
 body {
-  margin: 0;
   font-family: "Transport", Arial, Helvetica, sans-serif;
-  background: #f9f9f9;
   color: black;
-  overflow-x: hidden;
 }
 
 a {
@@ -39,21 +27,39 @@ a {
   text-decoration: none;
 }
 
-/* SHARED */
+/* SHARED LAYOUT */
+.splash-page,
+.about-page {
+  width: 100%;
+  height: 100dvh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  background: #f9f9f9;
+  overflow: hidden;
+}
+
+/* SHARED HEADER */
 .site-header {
+  position: relative;
+  z-index: 10;
   text-align: center;
   font-family: "Transport Heavy", Arial, Helvetica, sans-serif;
   font-size: 10px;
   font-weight: 800;
   letter-spacing: 0.08em;
   line-height: 1.05;
-  z-index: 10;
+}
+
+.site-logo-link {
+  display: inline-block;
+  cursor: pointer;
 }
 
 .site-header p {
   margin: 0;
 }
 
+/* SHARED FOOTER */
 .site-footer {
   display: flex;
   justify-content: space-between;
@@ -69,17 +75,13 @@ a {
   padding: 8px 0;
 }
 
-/* SPLASH */
+/* SPLASH PAGE */
 .splash-page {
-  min-height: 100vh;
-  width: 100%;
-  display: grid;
-  grid-template-rows: auto 1fr auto;
   padding: 36px 70px 32px;
-  background: #f9f9f9;
 }
 
 .splash-center {
+  min-height: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -93,30 +95,23 @@ a {
 .splash-image {
   display: block;
   width: min(76vw, 430px);
-  max-height: 72vh;
+  max-height: 68dvh;
   height: auto;
   object-fit: contain;
 }
 
 /* ABOUT / TEXT PAGES */
 .about-page {
-  min-height: 100vh;
-  width: 100%;
-  display: grid;
-  grid-template-rows: auto 1fr auto;
   padding: 42px 70px 32px;
-  background: #f9f9f9;
 }
 
 .about-content {
+  min-height: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
-  /* moves content slightly up like mockup */
   transform: translateY(-48px);
-
   text-align: center;
 }
 
@@ -147,11 +142,17 @@ a {
 @media (max-width: 600px) {
   .splash-page,
   .about-page {
-    padding: 36px 28px 32px;
+    height: 100dvh;
+    padding: 36px 28px 28px;
+  }
+
+  .splash-image {
+    width: min(78vw, 390px);
+    max-height: 64dvh;
   }
 
   .about-content {
-    transform: translateY(-36px);
+    transform: translateY(-28px);
   }
 
   .about-content h1 {
@@ -159,7 +160,7 @@ a {
   }
 
   .about-content p {
-    font-size: 11px;
     max-width: 300px;
+    font-size: 11px;
   }
 }
