@@ -1,39 +1,80 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Link } from "react-router-dom";
 import "./App.css";
 
-import Nav from "./components/Nav/Nav";
-import Footer from "./components/Footer/Footer";
-import Splash from "./pages/Splash/Splash";
-import EventDetails from "./pages/EventDetails/EventDetails";
-// import Main from "./pages/Main/Main";
-import AllEvents from "./pages/AllEvents/AllEvents";
-import About from "./pages/About/About";
-import { Profile } from "./pages/Profile/Profile";
-import { Login } from "./pages/Login/Login";
+import splashGif from "./assets/gifs/no-routine-wall.gif";
 
-import { Elements } from "@stripe/react-stripe-js";
-import { loadStripe } from "@stripe/stripe-js";
-// import ThemeToggle from "./components/ThemeToggle/ThemeToggle"; // Import ThemeToggle
+function SiteHeader() {
+  return (
+    <header className="site-header">
+      <Link to="/" className="site-logo-link">
+        <p>NO ROUTINE</p>
+        <p>NYC</p>
+      </Link>
+    </header>
+  );
+}
 
-const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY);
+function SiteFooter() {
+  return (
+    <footer className="site-footer">
+      <Link
+        to="https://www.instagram.com/noroutinenyc/"
+        target="_blank"
+        rel="noreferrer"
+      >
+        INSTAGRAM
+      </Link>
+      <Link to="mailto:hello@noroutine.nyc" target="_blank" rel="noreferrer">
+        WORK WITH US
+      </Link>
+    </footer>
+  );
+}
+
+function SplashPage() {
+  return (
+    <main className="splash-page">
+      <SiteHeader />
+
+      <section className="splash-center">
+        <Link to="/about" className="splash-image-link">
+          <img src={splashGif} alt="No Routine NYC" className="splash-image" />
+        </Link>
+      </section>
+
+      <SiteFooter />
+    </main>
+  );
+}
+
+function AboutPage() {
+  return (
+    <main className="about-page">
+      <SiteHeader />
+
+      <section className="about-content">
+        <h1>about</h1>
+
+        <p>
+          NO ROUTINE is a New York based global community
+          <br />
+          built around play, movement and real-world connection
+        </p>
+
+        <a href="mailto:hello@noroutine.nyc">hello@noroutine.nyc</a>
+      </section>
+
+      <SiteFooter />
+    </main>
+  );
+}
 
 function App() {
   return (
-    <>
-      {/* <Elements stripe={stripePromise}> */}
-      {/* <Nav /> */}
-      <Routes>
-        <Route path="/" element={<Splash />} />
-        <Route path="/event-details/:event_id" element={<EventDetails />} />
-        <Route path="/events" element={<AllEvents />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/login-signup" element={<Login />} />
-      </Routes>
-      {/* <Footer /> */}
-      {/* <ThemeToggle /> Add ThemeToggle */}
-      {/* </Elements> */}
-    </>
+    <Routes>
+      <Route path="/" element={<SplashPage />} />
+      <Route path="/about" element={<AboutPage />} />
+    </Routes>
   );
 }
 
