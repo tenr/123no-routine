@@ -1,7 +1,7 @@
 import { Routes, Route, Link } from "react-router-dom";
 import "./App.css";
 
-import splashGif from "./assets/gifs/no-routine-wall.gif";
+import splashGif from "./assets/gifs/no-routine-building.png";
 
 function SiteHeader() {
   return (
@@ -60,6 +60,11 @@ function AboutPage() {
         </p>
 
         <a href="mailto:hello@noroutine.nyc">hello@noroutine.nyc</a>
+        <br />
+        <br />
+        <Link to="/" className="font-normal">
+          back to home
+        </Link>
       </section>
 
       <SiteFooter />

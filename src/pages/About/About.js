@@ -1,5 +1,6 @@
 import React from "react";
 import "./About.css";
+import { Link } from "react-router-dom";
 // import moo from "../../assets/photos/moo.jpg";
 // import aaron from "../../assets/photos/aaron.png";
 // import ling from "../../assets/photos/ling.jpg";
@@ -41,7 +42,7 @@ function About() {
                 window.open(
                   "mailto:noroutinenyc@gmail.com",
                   "emailWindow",
-                  "width=500,height=600,top=100,left=100"
+                  "width=500,height=600,top=100,left=100",
                 )
               }
             >
@@ -49,9 +50,7 @@ function About() {
             </button>
           </p>
 
-          <div>
-            <img className="px-12" src={redGif} alt="no-routine-gif" />
-          </div>
+          <div></div>
         </div>
       </div>
     </>
