@@ -1,7 +1,7 @@
 import { Routes, Route, Link } from "react-router-dom";
 import "./App.css";
 
-import splashGif from "./assets/gifs/no-routine-building.png";
+import splashGif from "./assets/gifs/no-routine-scaffolding.png";
 
 function SiteHeader() {
   return (
